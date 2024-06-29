@@ -1,0 +1,29 @@
+name: MATLAB build and test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2
+
+      - name: Build an extension
+        uses: matlab-actions/run-command@v2
+        with:
+          source-folder: mex cppArrayMex.cpp
+
+      - name: Build an extension
+        uses: matlab-actions/run-command@v2
+        with:
+          source-folder: testcppArray
