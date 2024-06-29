@@ -21,9 +21,9 @@ jobs:
       - name: Build an extension
         uses: matlab-actions/run-command@v2
         with:
-          source-folder: mex cppArrayMex.cpp
+          command: mex cppArrayMex.cpp
 
-      - name: Build an extension
+      - name: Test
         uses: matlab-actions/run-command@v2
         with:
-          source-folder: testcppArray
+          command: testcppArray
