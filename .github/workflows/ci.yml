@@ -15,11 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
   
-      - name: Download oneAPI
-        run: curl https://registrationcenter-download.intel.com/akdlm/IRC_NAS/e83a8e64-04fc-45df-85c6-c2208d03bdb5/w_BaseKit_p_2024.2.0.635.exe --output baseKit.exe
-
-      - name: Install oneAPI
-        run: baseKit.exe -a --components intel.oneapi.win.cpp-dpcpp-common:intel.oneapi.win.mkl.devel -s --eula accept --install-dir ONEAPI_ROOT 
+      - name: Download and install oneAPI
+        run: curl https://registrationcenter-download.intel.com/akdlm/IRC_NAS/e83a8e64-04fc-45df-85c6-c2208d03bdb5/w_BaseKit_p_2024.2.0.635.exe --output baseKit.exe && baseKit.exe -a --components intel.oneapi.win.cpp-dpcpp-common:intel.oneapi.win.mkl.devel -s --eula accept --install-dir ONEAPI_ROOT 
       
 #      - name: Set up MATLAB
 #        uses: matlab-actions/setup-matlab@v2
