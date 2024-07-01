@@ -19,7 +19,7 @@ classdef cppArray < handle
         
         function disp(obj)
             % Display the array
-            data = cppArrayMex('getData', obj.cppHandle);
+            data = cppArrayMex('gather', obj.cppHandle);
             disp(data);
         end
         
@@ -31,9 +31,9 @@ classdef cppArray < handle
             result.dims = obj.dims; % Assume the dimensions remain the same
         end
         
-        function data = getData(obj)
+        function data = gather(obj)
             % Get the array data
-            data = cppArrayMex('getData', obj.cppHandle);
+            data = cppArrayMex('gather', obj.cppHandle);
         end
 
         function s = size(obj, dim)

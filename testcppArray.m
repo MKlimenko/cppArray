@@ -34,15 +34,15 @@ function testCppArray()
         disp(e.message);
     end
     
-    % Test getData method
-    disp('Testing getData method...');
+    % Test gather method
+    disp('Testing gather method...');
     try
-        data = C.getData();
+        data = C.gather();
         disp('Data from C:');
         disp(data);
-        disp('getData passed.');
+        disp('gather passed.');
     catch e
-        disp('getData failed.');
+        disp('gather failed.');
         disp(e.message);
     end
     
