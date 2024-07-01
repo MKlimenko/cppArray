@@ -21,4 +21,4 @@ jobs:
       - name: Build an extension and test
         uses: matlab-actions/run-command@v2
         with:
-          command: mex cppArrayMex.cpp; testcppArray
+          command: mex COMPFLAGS="$COMPFLAGS /std:c++17" cppArrayMex.cpp; testcppArray
