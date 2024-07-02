@@ -15,23 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Mock download and install
-        shell: cmd
-        run: curl https://registrationcenter-download.intel.com/akdlm/IRC_NAS/e83a8e64-04fc-45df-85c6-c2208d03bdb5/w_BaseKit_p_2024.2.0.635.exe --output baseKit.exe && baseKit.exe -a --components intel.oneapi.win.cpp-dpcpp-common -s --eula accept --install-dir ONEAPI_ROOT && ONEAPI_ROOT\setvars.bat && set > env_vars.txt &&  for /f "delims=" %%i in (env_vars.txt) do (set %%i @echo %%i>>%GITHUB_ENV%)
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2
 
-      - name: Check environment
-        shell: cmd
-        run: icx
-
-  
-#      - name: Download and install oneAPI
-#        shell: cmd
-#        run: curl https://registrationcenter-download.intel.com/akdlm/IRC_NAS/e83a8e64-04fc-45df-85c6-c2208d03bdb5/w_BaseKit_p_2024.2.0.635.exe --output baseKit.exe && baseKit.exe -a --components intel.oneapi.win.cpp-dpcpp-common -s --eula accept --install-dir ONEAPI_ROOT && ONEAPI_ROOT\setvars.bat 
-      
-#      - name: Set up MATLAB
-#        uses: matlab-actions/setup-matlab@v2
-#
-#      - name: Build an extension and test
-#        uses: matlab-actions/run-command@v2
-#        with:
-#          command: mex COMPFLAGS="$COMPFLAGS /std:c++17" cppArrayMex.cpp; testcppArray
+      - name: Build an extension and test
+        run: echo "Hello!"
+        uses: matlab-actions/run-command@v2
+        with:
+          command: mex COMPFLAGS="$COMPFLAGS /std:c++17" cppArrayMex.cpp; testcppArray
