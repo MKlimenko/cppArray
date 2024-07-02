@@ -17,23 +17,7 @@ jobs:
 
       - name: Mock download and install
         shell: cmd
-        run: curl https://registrationcenter-download.intel.com/akdlm/IRC_NAS/e83a8e64-04fc-45df-85c6-c2208d03bdb5/w_BaseKit_p_2024.2.0.635.exe --output baseKit.exe && baseKit.exe -a --components intel.oneapi.win.cpp-dpcpp-common -s --eula accept --install-dir ONEAPI_ROOT && ONEAPI_ROOT\setvars.bat && set > env_vars.txt
-
-      - name: Upload environment variables file
-        uses: actions/upload-artifact@v2
-        with:
-          name: env-vars
-          path: env_vars.txt
-
-      - name: Download environment variables file
-        uses: actions/download-artifact@v2
-        with:
-          name: env-vars
-          path: .
-
-      - name: Load environment variables from file
-        shell: cmd
-        run: for /f "delims=" %%i in (env_vars.txt) do @echo %%i>>%GITHUB_ENV%
+        run: curl https://registrationcenter-download.intel.com/akdlm/IRC_NAS/e83a8e64-04fc-45df-85c6-c2208d03bdb5/w_BaseKit_p_2024.2.0.635.exe --output baseKit.exe && baseKit.exe -a --components intel.oneapi.win.cpp-dpcpp-common -s --eula accept --install-dir ONEAPI_ROOT && ONEAPI_ROOT\setvars.bat && set > env_vars.txt &&  for /f "delims=" %%i in (env_vars.txt) do (set %%i @echo %%i>>%GITHUB_ENV%)
 
       - name: Check environment
         shell: cmd
